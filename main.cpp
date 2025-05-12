@@ -164,16 +164,16 @@ void DrawGrid(const Matrix4x4& viewProjectionMatrix, const Matrix4x4& viewportMa
 
 void DrawSphere(const Vector3& center, float radius, const Matrix4x4& viewProjectionMatrix, const Matrix4x4& viewportMatrix, uint32_t color) {
 	const uint32_t kSubdivision = 20; //分割数
-	const float kLatEvery = static_cast<float>(M_PI) / static_cast<float>(kSubdivision); // 緯度分割1つ分の角度
-	const float kLonEvery = static_cast<float>(2.0f * M_PI) / static_cast<float>(kSubdivision); // 経度分割1つ分の角度
+	const float kLatEvery = static_cast<float>(M_PI) / static_cast<float>(kSubdivision); // 緯度分割1つ分の角度 θd
+	const float kLonEvery = static_cast<float>(2.0f * M_PI) / static_cast<float>(kSubdivision); // 経度分割1つ分の角度 φd
 
 	// 緯度の方向に分割 -π/2~π/2
 	for (uint32_t latIndex = 0; latIndex < kSubdivision; ++latIndex) {
-		float lat = -static_cast<float>(M_PI) / 2.0f + kLatEvery * latIndex;
+		float lat = -static_cast<float>(M_PI) / 2.0f + kLatEvery * latIndex; // θ
 		
 		// 経度の方向に分割 θ~2π
 		for (uint32_t lonIndex = 0; lonIndex < kSubdivision; ++lonIndex) {
-			float lon = kLonEvery * lonIndex;
+			float lon = kLonEvery * lonIndex; // φ
 
 			// 緯線
 			Vector3 a = {
